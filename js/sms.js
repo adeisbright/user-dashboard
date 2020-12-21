@@ -30,6 +30,7 @@ message.addEventListener("input" , e => {
         //console.log(message.textContent.trim().length) 
         e.target.addEventListener("keypress" , f => {
             f.preventDefault()
+            textCount.textContent = 0
         })
         let numbers = numberInput.value.replace("/\s+/g" , "").split(",")
         let data = {
