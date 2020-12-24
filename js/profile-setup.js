@@ -184,7 +184,7 @@ class ProfileManager{
     handleClick(e){ 
         let {target} = e 
         let {parentNode} = target
-        e.preventDefault() 
+        
         let workFields = Array.from(document.querySelectorAll(".data-experience")) 
         try {
            switch(target.id) { 
@@ -193,7 +193,7 @@ class ProfileManager{
                     target.parentNode.remove()
                     break ; 
                 case "submit-experience" : 
-                   
+                    e.preventDefault() 
                     //Select all input fields related to work 
                     let workExperience = {} //This will hold work related information 
                     if (workFields.every(field => field.value !== "")){ //Verify that every work information is provided
@@ -240,7 +240,7 @@ class ProfileManager{
                     }
                     break;
                 case "reset-experience" : 
-                  
+                    e.preventDefault() 
                     workFields.map(field => field.value = null) 
                     //history.go()
                 default :
