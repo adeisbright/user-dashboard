@@ -149,7 +149,7 @@ class ProfileManager{
     handleChangeImage(event) { 
         let target = event.target
         if (target.id === "avatar"){
-            // Grab the uplodaded file 
+            // Grab the uplodaded file  
             let files = target.files[0]  
             let acceptedFormat = ["image/jpeg" , "image/jpg" , "image/png" , "image/gif"] 
             let divisor = 1024*1024
@@ -184,19 +184,22 @@ class ProfileManager{
     handleClick(e){ 
         let {target} = e 
         let {parentNode} = target
-        e.preventDefault() 
+       
         let workFields = Array.from(document.querySelectorAll(".data-experience")) 
         try {
            switch(target.id) { 
                
                 case "check-work" : 
+                    e.preventDefault() 
                     target.parentNode.remove()
                     break ; 
                 case "submit-experience" : 
-                   
+                    e.preventDefault() 
                     //Select all input fields related to work 
                     let workExperience = {} //This will hold work related information 
+                    console.log(workFields)
                     if (workFields.every(field => field.value !== "")){ //Verify that every work information is provided
+                        
                         workFields.map(field => { 
                             let {id , value} = field 
                             field.value = value
@@ -213,7 +216,7 @@ class ProfileManager{
                             msg.setAttribute("class" , "red-text") 
                             parentNode.parentNode.append(msg)
                         }else {
-                            msg = parentNod.nextElementSibling
+                            msg = parentNode.nextElementSibling
                         }
                         if (window.localStorage){ 
                            
@@ -240,7 +243,7 @@ class ProfileManager{
                     }
                     break;
                 case "reset-experience" : 
-                  
+                    e.preventDefault() 
                     workFields.map(field => field.value = null) 
                     //history.go()
                 default :
